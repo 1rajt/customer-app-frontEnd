@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
  import { Customer } from '../models/customer';
- const baseUrl =
-     'http://localhost:4000/users';
+ const baseUrl =`${process.env['SERVER_URL']}/users`;
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
 
