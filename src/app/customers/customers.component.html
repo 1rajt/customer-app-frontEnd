@@ -1,0 +1,32 @@
+  <a class="btn btn-info mb-5" [routerLink]="['/customers/add']">+ Add</a>
+  <h3 class="mb-3">Customer List</h3>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">CreatedAt</th>
+        <th scope="col">UpdatedAt</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers" [routerLink]="['/customers/details']"
+        [ngClass]="{'cursor-pointer table-active': customer.id === selectedId, 'cursor-pointer': customer.id !== selectedId}"
+        (click)="setCustomer(customer.id, customer.firstName, customer.lastName, customer.email, customer.createdDate,customer.updatedDate)">
+        <td>{{customer.id}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.createdDate | date:'medium'}}</td>
+        <td>{{customer.updatedDate | date:'medium'}}</td>
+        <td class="">
+          <button class="btn btn-warning me-2" [routerLink]="['/customers/add/']" [queryParams]="{ id: customer.id }">
+            Edit </button>
+          <button class="btn btn-danger" (click)="$event.stopPropagation();deleteUser(customer.id)"> Delete </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
